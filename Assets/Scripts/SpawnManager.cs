@@ -18,7 +18,7 @@ public class SpawnManager : MonoBehaviour
 
     // Spawn rate
     private float _startTime = 1f;
-    private float _repeatRate = 2f;
+    private float _repeatRate = 0.5f;
 
     /// <summary>
     /// Spawn an obstacle every 2 seconds from the start
