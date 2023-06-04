@@ -8,6 +8,7 @@ public class Asteroid : Obstacle
     // Movement
     private float _minMoveSpeed = 4f;
     private float _maxMoveSpeed = 8f;
+    private float _minPositionY = -6f;
 
     // Size
     private float _minSize = 1.5f;
@@ -28,6 +29,7 @@ public class Asteroid : Obstacle
     private void Update()
     {
         Move();
+        DestroyIfOutOfScreen();
     }
 
     /// <summary>
@@ -36,6 +38,17 @@ public class Asteroid : Obstacle
     public override void Move()
     {
         transform.Translate(Vector3.down * Time.deltaTime * MoveSpeed);
+    }
+
+    /// <summary>
+    /// Destroys the asteroid if its position exceeds the bottom of the screen
+    /// </summary>
+    private void DestroyIfOutOfScreen()
+    {
+        if(transform.position.y < _minPositionY)
+        {
+            Destroy(gameObject);
+        }
     }
 
     /// <summary>
