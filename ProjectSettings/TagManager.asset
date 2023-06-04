@@ -6,6 +6,7 @@ TagManager:
   tags:
   - GameManager
   - Asteroid
+  - SpawnManager
   layers:
   - Default
   - TransparentFX
