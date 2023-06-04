@@ -49,6 +49,10 @@ public class Player : MonoBehaviour
             transform.position = new Vector3(transform.position.x, -_moveLimitY, transform.position.z);
     }
 
+    /// <summary>
+    /// Destroy player and asteroids if they collide with each other
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.CompareTag("Asteroid"))
