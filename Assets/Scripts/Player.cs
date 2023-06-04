@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
     /// <param name="collision"></param>
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.CompareTag("Asteroid"))
+        if (collision.gameObject.CompareTag("Asteroid") || collision.gameObject.CompareTag("SpaceShip"))
         {
             Destroy(gameObject);
             Destroy(collision.gameObject);

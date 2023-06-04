@@ -6,8 +6,9 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [Header("Prefabs")]
-    [SerializeField] private GameObject _obstaclePrefab;
     [SerializeField] private Transform _parentGameObject;
+    [SerializeField] private GameObject _obstaclePrefab;
+    [SerializeField] private GameObject _spaceShipPrefab;
 
     // Spawn position
     private float _spawnPositionXRange = 8f;
@@ -24,6 +25,7 @@ public class SpawnManager : MonoBehaviour
     private void Start()
     {
         InvokeRepeating("SpawnObstacle", _startTime, _repeatRate);
+        InvokeRepeating("SpawnSpaceShip", _startTime * 10f, _repeatRate * 10f);
     }
 
     /// <summary>
@@ -32,6 +34,14 @@ public class SpawnManager : MonoBehaviour
     private void SpawnObstacle()
     {
         Instantiate(_obstaclePrefab, RandomSpawnPosition(), Quaternion.identity, _parentGameObject);
+    }
+
+    /// <summary>
+    /// Spawn the obstacle (selected prefab in the inspector) at a random position
+    /// </summary>
+    private void SpawnSpaceShip()
+    {
+        Instantiate(_spaceShipPrefab, RandomSpawnPosition(), Quaternion.identity, _parentGameObject);
     }
 
     /// <summary>

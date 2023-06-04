@@ -24,7 +24,7 @@ public class Asteroid : Obstacle
     }
 
     /// <summary>
-    /// Move asteroid at every frame
+    /// Move asteroid at every frame and destroy it if it's off the screen
     /// </summary>
     private void Update()
     {
