@@ -49,6 +49,15 @@ public class Player : MonoBehaviour
             transform.position = new Vector3(transform.position.x, -_moveLimitY, transform.position.z);
     }
 
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.CompareTag("Asteroid"))
+        {
+            Destroy(gameObject);
+            Destroy(collision.gameObject);
+        }
+    }
+
     /// <summary>
     /// ENCAPSULATION
     /// </summary>
