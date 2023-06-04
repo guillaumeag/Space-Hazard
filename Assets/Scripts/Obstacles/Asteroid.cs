@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -8,7 +6,6 @@ using UnityEngine;
 public class Asteroid : Obstacle
 {
     // Movement
-    private float _moveDirection = -1f;
     private float _minMoveSpeed = 4f;
     private float _maxMoveSpeed = 8f;
 
@@ -38,8 +35,7 @@ public class Asteroid : Obstacle
     /// </summary>
     public override void Move()
     {
-        float moveDirectionY = _moveDirection * Time.deltaTime * MoveSpeed;
-        transform.Translate(transform.position.x, moveDirectionY, transform.position.z);
+        transform.Translate(Vector3.down * Time.deltaTime * MoveSpeed);
     }
 
     /// <summary>
