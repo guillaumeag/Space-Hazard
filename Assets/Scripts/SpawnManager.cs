@@ -9,6 +9,7 @@ public class SpawnManager : MonoBehaviour
 {
     [Header("Prefabs")]
     [SerializeField] private GameObject _obstaclePrefab;
+    [SerializeField] private Transform _parentGameObject;
 
     // Spawn position
     private float _spawnPositionXRange = 8f;
@@ -32,7 +33,7 @@ public class SpawnManager : MonoBehaviour
     /// </summary>
     private void SpawnObstacle()
     {
-        Instantiate(_obstaclePrefab, RandomSpawnPosition(), Quaternion.identity, transform);
+        Instantiate(_obstaclePrefab, RandomSpawnPosition(), Quaternion.identity, _parentGameObject);
     }
 
     /// <summary>
