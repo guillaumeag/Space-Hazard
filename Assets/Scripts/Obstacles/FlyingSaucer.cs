@@ -6,7 +6,6 @@ using UnityEngine;
 public class FlyingSaucer : Obstacle
 {
     private Vector3 _directionX;
-    private float _minPositionY = -10f;
 
     private void Start()
     {
@@ -20,7 +19,6 @@ public class FlyingSaucer : Obstacle
     private void Update()
     {
         Move();
-        DestroyIfOutOfScreen();
     }
 
     /// <summary>
@@ -29,16 +27,5 @@ public class FlyingSaucer : Obstacle
     public override void Move()
     {
         transform.Translate((Vector3.down + (_directionX / 5f)) * Time.deltaTime * MoveSpeed);
-    }
-
-    /// <summary>
-    /// Destroys the asteroid if its position exceeds the bottom of the screen
-    /// </summary>
-    private void DestroyIfOutOfScreen()
-    {
-        if (transform.position.y < _minPositionY)
-        {
-            Destroy(gameObject);
-        }
     }
 }

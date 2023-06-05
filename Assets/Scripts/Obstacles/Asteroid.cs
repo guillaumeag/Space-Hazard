@@ -29,7 +29,6 @@ public class Asteroid : Obstacle
     private void Update()
     {
         Move();
-        DestroyIfOutOfScreen();
     }
 
     /// <summary>
@@ -38,17 +37,6 @@ public class Asteroid : Obstacle
     public override void Move()
     {
         transform.Translate(Vector3.down * Time.deltaTime * MoveSpeed);
-    }
-
-    /// <summary>
-    /// Destroys the asteroid if its position exceeds the bottom of the screen
-    /// </summary>
-    private void DestroyIfOutOfScreen()
-    {
-        if(transform.position.y < _minPositionY)
-        {
-            Destroy(gameObject);
-        }
     }
 
     /// <summary>

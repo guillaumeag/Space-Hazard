@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7535112459556973494}
   - component: {fileID: 7973621048637191669}
+  - component: {fileID: -7692366971476453153}
   - component: {fileID: 1784214051215231820}
   - component: {fileID: 2271862347038637990}
   - component: {fileID: 249668445953003689}
@@ -54,7 +55,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f32f687fb79e54f5d890d833eecc7d3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wooshClip: {fileID: 8300000, guid: d2eb21ff8b5744ef0b103f7c5bbed5b9, type: 3}
+--- !u!114 &-7692366971476453153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18804780579506515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70116f159264f4d40824e8781046bddf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!23 &1784214051215231820
 MeshRenderer:
   m_ObjectHideFlags: 0
