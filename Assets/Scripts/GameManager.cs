@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         GameOver();
+        Restart();
     }
 
     /// <summary>
@@ -33,5 +35,14 @@ public class GameManager : MonoBehaviour
             _audioSource.PlayOneShot(_gameOverAudioClip);
             _isGameActive = false;
         }
+    }
+
+    /// <summary>
+    /// Reload the game scene to restart
+    /// </summary>
+    private void Restart()
+    {
+        if(Input.GetKeyDown(KeyCode.R))
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
