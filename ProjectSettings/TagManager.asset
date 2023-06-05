@@ -8,6 +8,7 @@ TagManager:
   - Asteroid
   - SpawnManager
   - SpaceShip
+  - Music
   layers:
   - Default
   - TransparentFX
