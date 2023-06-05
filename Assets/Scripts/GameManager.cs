@@ -20,6 +20,14 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        GameOver();
+    }
+
+    /// <summary>
+    /// Play a sound if player is destroyed during active game and set game unactive
+    /// </summary>
+    private void GameOver()
+    {
         if (_isGameActive && _player == null)
         {
             _audioSource.PlayOneShot(_gameOverAudioClip);
