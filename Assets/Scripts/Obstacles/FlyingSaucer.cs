@@ -6,7 +6,7 @@ using UnityEngine;
 public class FlyingSaucer : Obstacle
 {
     private Vector3 _directionX;
-    private float _minPositionY = -6f;
+    private float _minPositionY = -10f;
 
     private void Start()
     {
