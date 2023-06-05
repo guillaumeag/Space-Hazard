@@ -5,8 +5,8 @@ public class Star : MonoBehaviour
 {
     private TextMeshPro _textComponent;
 
-    private float _fontSizeMin = 1.5f;
-    private float _fontSizeMax = 4f;
+    private float _fontSizeMin = 1f;
+    private float _fontSizeMax = 6f;
 
     void Start()
     {
