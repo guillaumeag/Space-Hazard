@@ -5,27 +5,35 @@ using UnityEngine;
 /// </summary>
 public class SpawnManager : MonoBehaviour
 {
-    [Header("Prefabs")]
+    [Header("Obstacles")]
     [SerializeField] private Transform _parentGameObject;
     [SerializeField] private GameObject _obstaclePrefab;
     [SerializeField] private GameObject _spaceShipPrefab;
+
+    [Header("Background Stars")]
+    [SerializeField] private Transform _parentStars;
+    [SerializeField] private GameObject _starPrefab;
 
     // Spawn position
     private float _spawnPositionXRange = 8f;
     private float _spawnPositionY = 6f;
     private float _spawnPositionZ = 0f;
 
-    // Spawn rate
-    private float _startTime = 1f;
+    // Spawn rates
+    private float _startTime = 4f;
+    private float _startTimeStar = 0f;
+    private float _startTimeSpaceShip = 30f;
     private float _repeatRate = 0.5f;
+    private float _repeatRateSpaceShip = 20f;
 
     /// <summary>
     /// Spawn an obstacle every 2 seconds from the start
     /// </summary>
     private void Start()
     {
+        InvokeRepeating("SpawnStar", _startTimeStar, _repeatRate);
         InvokeRepeating("SpawnObstacle", _startTime, _repeatRate);
-        InvokeRepeating("SpawnSpaceShip", _startTime * 10f, _repeatRate * 10f);
+        InvokeRepeating("SpawnSpaceShip", _startTimeSpaceShip, _repeatRateSpaceShip);
     }
 
     /// <summary>
@@ -42,6 +50,14 @@ public class SpawnManager : MonoBehaviour
     private void SpawnSpaceShip()
     {
         Instantiate(_spaceShipPrefab, RandomSpawnPosition(), Quaternion.identity, _parentGameObject);
+    }
+
+    /// <summary>
+    /// Spawn the obstacle (selected prefab in the inspector) at a random position
+    /// </summary>
+    private void SpawnStar()
+    {
+        Instantiate(_starPrefab, RandomSpawnPosition(), Quaternion.identity, _parentStars);
     }
 
     /// <summary>
