@@ -9,6 +9,7 @@ TagManager:
   - SpawnManager
   - SpaceShip
   - Music
+  - HUD
   layers:
   - Default
   - TransparentFX
