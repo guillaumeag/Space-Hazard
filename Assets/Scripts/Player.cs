@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("SFX")]
+    [SerializeField] GameObject _sfxExplosion;
+
     // Movement
     private float _moveSpeed = 3.5f;
     private float _moveLimitX = 8.5f;
@@ -55,6 +58,10 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Asteroid") || collision.gameObject.CompareTag("SpaceShip"))
         {
+            // Run visual effect
+            Instantiate(_sfxExplosion, transform.position, Quaternion.identity);
+
+            // Destroy objects
             Destroy(gameObject);
             Destroy(collision.gameObject);
         }

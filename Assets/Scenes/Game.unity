@@ -1587,6 +1587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce6e25f91f5844121946c86ed774bd4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sfxExplosion: {fileID: 8610101055870197882, guid: 9713e5168e3cb43e2b61c7d7e381c929, type: 3}
 --- !u!224 &1559842321
 RectTransform:
   m_ObjectHideFlags: 0
