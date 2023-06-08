@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
@@ -9,6 +10,10 @@ public class Player : MonoBehaviour
     private float _moveSpeed = 3.5f;
     private float _moveLimitX = 8.5f;
     private float _moveLimitY = 4.5f;
+
+    // Rotation
+    private float _rotationSpeed = 1f;
+    private float _rotationAngleY = 30f;
 
     private void Update()
     {
@@ -21,12 +26,25 @@ public class Player : MonoBehaviour
     /// </summary>
     private void Move()
     {
-        float moveDirectionX = 0f, moveDirectionY = 0f;
+        float moveDirectionX = 0f, moveDirectionY = 0f, moveDirectionZ = 0f;
+        float rotateDirectionX = 0f, rotateDirectionY = 0f, rotateDirectionZ = 0f;
 
+        // Set directions and rotations based on inputs
         moveDirectionX = Input.GetAxis("Horizontal") * Time.deltaTime * _moveSpeed;
         moveDirectionY = Input.GetAxis("Vertical") * Time.deltaTime * _moveSpeed;
 
-        transform.Translate(moveDirectionX, moveDirectionY, transform.position.z);
+        rotateDirectionY = Input.GetAxis("Horizontal") * _rotationAngleY * _rotationSpeed;
+
+        // Move the ship based on directions
+        transform.Translate(moveDirectionX, moveDirectionY, moveDirectionZ);
+
+        // Rotate slightly the ship when moving horizontally
+        // Go back to 0 if no horizontal movement
+        transform.rotation = Quaternion.Euler(rotateDirectionX, rotateDirectionY, rotateDirectionZ);
+
+        // When rotating Z-Axis position is decreasing
+        // Reset Z-Axis after ship rotating to prevent it to dissappear
+        transform.position = new Vector3(transform.position.x, transform.position.y, moveDirectionZ);
 
         // ABSTRACTION
         RepositionIfOutOfGameSpace();
