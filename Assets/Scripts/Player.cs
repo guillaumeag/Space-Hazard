@@ -36,15 +36,19 @@ public class Player : MonoBehaviour
         rotateDirectionY = Input.GetAxis("Horizontal") * _rotationAngleY * _rotationSpeed;
 
         // Move the ship based on directions
-        transform.Translate(moveDirectionX, moveDirectionY, moveDirectionZ);
+        //transform.Translate(moveDirectionX, moveDirectionY, moveDirectionZ);
+        transform.position = new Vector3(transform.position.x + moveDirectionX,
+                                         transform.position.y + moveDirectionY,
+                                         moveDirectionZ);
 
         // Rotate slightly the ship when moving horizontally
         // Go back to 0 if no horizontal movement
         transform.rotation = Quaternion.Euler(rotateDirectionX, rotateDirectionY, rotateDirectionZ);
 
+        // ONLY WITH TRANSLATE
         // When rotating Z-Axis position is decreasing
         // Reset Z-Axis after ship rotating to prevent it to dissappear
-        transform.position = new Vector3(transform.position.x, transform.position.y, moveDirectionZ);
+        //transform.position = new Vector3(transform.position.x, transform.position.y, moveDirectionZ);
 
         // ABSTRACTION
         RepositionIfOutOfGameSpace();
