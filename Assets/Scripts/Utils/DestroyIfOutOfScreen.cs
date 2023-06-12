@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DestroyIfOutOfScreen : MonoBehaviour
 {
-    private float _minPositionY = -10f;
+    private float _minPositionY = -18f;
 
     void Update()
     {
