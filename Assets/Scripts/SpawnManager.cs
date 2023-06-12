@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -20,20 +21,54 @@ public class SpawnManager : MonoBehaviour
     private float _spawnPositionZ = 0f;
 
     // Spawn rates
-    private float _startTime = 4f;
-    private float _startTimeStar = 0f;
+    private float _startTimeNow = 0f;
+    private float _startTimeObstacle = 4f;
     private float _startTimeSpaceShip = 30f;
-    private float _repeatRate = 0.5f;
+    private float _repeatRateStar = 0.5f;
+    private float _repeatRateObstacle = 0.4f;
     private float _repeatRateSpaceShip = 20f;
+    private float _repeatRateObstacleStep = 0.1f;
+
+    private int _lastMinute;
 
     /// <summary>
     /// Spawn an obstacle every 2 seconds from the start
     /// </summary>
     private void Start()
     {
-        InvokeRepeating("SpawnStar", _startTimeStar, _repeatRate);
-        InvokeRepeating("SpawnObstacle", _startTime, _repeatRate);
+        InvokeRepeating("SpawnStar", _startTimeNow, _repeatRateStar);
+        InvokeRepeating("SpawnObstacle", _startTimeObstacle, _repeatRateObstacle);
         InvokeRepeating("SpawnSpaceShip", _startTimeSpaceShip, _repeatRateSpaceShip);
+    }
+
+    private void Update()
+    {
+        IncreaseObstacleRepeatRateEveryMin();
+    }
+
+    /// <summary>
+    /// Increase obstacle invoke repeat rate every minute.
+    /// </summary>
+    private void IncreaseObstacleRepeatRateEveryMin()
+    {
+        // Check current time
+        int currentMinute = TimeSpan.FromSeconds(Time.time).Minutes;
+
+        // Minute increase
+        if(currentMinute > _lastMinute)
+        {
+            // Cancel current SpawnObstacle routine
+            CancelInvoke("SpawnObstacle");
+
+            // increase repeat rate
+            _repeatRateObstacle -= _repeatRateObstacleStep;
+
+            // Invoke routine again with new repeat rate
+            InvokeRepeating("SpawnObstacle", _startTimeNow, _repeatRateObstacle);
+
+            // Store current minute
+            _lastMinute = currentMinute;
+        }
     }
 
     /// <summary>
@@ -66,7 +101,7 @@ public class SpawnManager : MonoBehaviour
     /// <returns>A <c>Vector3</c> representing spawn position</returns>
     private Vector3 RandomSpawnPosition()
     {
-        float randomPositionX = Random.Range(-_spawnPositionXRange, _spawnPositionXRange);
+        float randomPositionX = UnityEngine.Random.Range(-_spawnPositionXRange, _spawnPositionXRange);
         return new Vector3(randomPositionX, _spawnPositionY, _spawnPositionZ);
     }
 }
