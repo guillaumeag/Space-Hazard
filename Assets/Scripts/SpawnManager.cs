@@ -26,6 +26,7 @@ public class SpawnManager : MonoBehaviour
     private float _startTimeSpaceShip = 30f;
     private float _repeatRateStar = 0.5f;
     private float _repeatRateObstacle = 0.4f;
+    private float _repeatRateObstacleBase = 0.4f;
     private float _repeatRateSpaceShip = 20f;
     private float _repeatRateObstacleStep = 0.1f;
 
@@ -61,8 +62,13 @@ public class SpawnManager : MonoBehaviour
             CancelInvoke("SpawnObstacle");
 
             // increase repeat rate
-            _repeatRateObstacle -= _repeatRateObstacleStep;
+            Debug.Log("_repeatRateObstacle:" + _repeatRateObstacle);
 
+            if(!Mathf.Approximately(_repeatRateObstacle,_repeatRateObstacleStep)) {
+              _repeatRateObstacle -= _repeatRateObstacleStep;
+              Debug.Log("_repeatRateObstacle:"+_repeatRateObstacle);
+            }
+            
             // Invoke routine again with new repeat rate
             InvokeRepeating("SpawnObstacle", _startTimeNow, _repeatRateObstacle);
 
@@ -103,5 +109,10 @@ public class SpawnManager : MonoBehaviour
     {
         float randomPositionX = UnityEngine.Random.Range(-_spawnPositionXRange, _spawnPositionXRange);
         return new Vector3(randomPositionX, _spawnPositionY, _spawnPositionZ);
+    }
+
+    public void resetRepeatRateObstacle()
+    {
+        _repeatRateObstacle = _repeatRateObstacleBase;
     }
 }

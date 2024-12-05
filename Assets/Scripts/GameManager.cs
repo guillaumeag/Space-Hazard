@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     // Attached objects & components
     [Header("Game Objects")]
     [SerializeField] private GameObject _player;
+    [SerializeField] private SpawnManager _spawnManager;
 
     [Header("Sounds")]
     [SerializeField] private AudioClip _gameOverAudioClip;
@@ -52,7 +53,17 @@ public class GameManager : MonoBehaviour
     private void Restart()
     {
         if(Input.GetKeyDown(KeyCode.R))
+        {
+            // Reset time
+            // TimeSpan timeSpan = TimeSpan.FromSeconds(Time.time);
+            // _uiElapsedTime.text = "00:00:00";
+
+            // Reset obstacle repeat rate
+            _spawnManager.resetRepeatRateObstacle();
+
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
     }
 
     /// <summary>
@@ -62,7 +73,7 @@ public class GameManager : MonoBehaviour
     {
         if (_isGameActive)
         {
-            TimeSpan timeSpan = TimeSpan.FromSeconds(Time.time);
+            TimeSpan timeSpan = TimeSpan.FromSeconds(Time.timeSinceLevelLoad);
             _uiElapsedTime.text = string.Format("{0:D2}:{1:D2}:{2:D2}", timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds);
         }
     }
